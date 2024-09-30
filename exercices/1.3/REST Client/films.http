@@ -1,0 +1,77 @@
+### Read all movies
+GET http://localhost:3000/films
+
+### Read all movies with a minimum duration of 150 minutes
+GET http://localhost:3000/films?minimum-duration=150
+
+### Read one movie (with id=2)
+GET http://localhost:3000/films/2
+
+### Create a new movie
+POST http://localhost:3000/films
+Content-Type: application/json
+
+{
+  "title": "Dune",
+  "director": "Denis Villeneuve",
+  "duration": 155,
+  "budget": 165,
+  "description": "A science fiction epic",
+  "imageUrl": "https://example.com/dune.jpg"
+}
+
+### Read one movie with an invalid ID (error case)
+GET http://localhost:3000/films/abc
+
+### Read all movies with a minimum duration that is too high (no movies found)
+GET http://localhost:3000/films?minimum-duration=500
+
+### Create a movie with missing fields (error case)
+POST http://localhost:3000/films
+Content-Type: application/json
+
+{
+  "title": "The Matrix",
+  "duration": 136
+}
+
+### Create a movie with invalid duration (error case)
+POST http://localhost:3000/films
+Content-Type: application/json
+
+{
+  "title": "The Matrix",
+  "director": "Lana Wachowski",
+  "duration": -120,
+  "budget": 63,
+  "description": "A sci-fi classic",
+  "imageUrl": "https://example.com/matrix.jpg"
+}
+
+### Create a movie without a budget (budget should default to null)
+POST http://localhost:3000/films
+Content-Type: application/json
+
+{
+  "title": "The Matrix",
+  "director": "Lana Wachowski",
+  "duration": 136,
+  "description": "A sci-fi classic",
+  "imageUrl": "https://example.com/matrix.jpg"
+}
+
+### Create another movie (with full data)
+POST http://localhost:3000/films
+Content-Type: application/json
+
+{
+  "title": "Blade Runner 2049",
+  "director": "Denis Villeneuve",
+  "duration": 163,
+  "budget": 150,
+  "description": "A visually stunning sequel to Blade Runner",
+  "imageUrl": "https://example.com/bladerunner2049.jpg"
+}
+
+### Read all movies after adding new movies
+GET http://localhost:3000/films
